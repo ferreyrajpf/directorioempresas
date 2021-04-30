@@ -13,5 +13,13 @@ public class Empresa {
     private String razonSocial;
     private String email;
     private String telefono;
-    
+
+    public Empresa(String razonSocial, String email) {
+        this.razonSocial = razonSocial;
+        this.email = email;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
 }
