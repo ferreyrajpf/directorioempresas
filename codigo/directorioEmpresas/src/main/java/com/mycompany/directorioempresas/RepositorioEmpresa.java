@@ -21,5 +21,14 @@ public class RepositorioEmpresa {
     public int CantidadEmpresas(){
         return listadoEmpresas.size();
     }
+    
+    public Empresa ObtenerEmpresa(String razonsocial){
+        for (Empresa empresa : listadoEmpresas){
+            if (empresa.getRazonSocial().equalsIgnoreCase(razonsocial)){
+                return empresa;
+            }
+        }
+        return null;
+    }
           
 }

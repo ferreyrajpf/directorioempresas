@@ -27,8 +27,10 @@ public class Main {
             case 1:
                 RegistrarEmpresa();
             break;
-            
+                
             case 2:
+                RegistrarEmpresa();
+                RegistrarProducto();
             break;
                   
             
@@ -57,4 +59,31 @@ public class Main {
         
         System.out.println("Total de empresas creadas:" + listadoempresas.CantidadEmpresas() );
     }
+    
+    public static void RegistrarProducto(){
+        RepositorioEmpresa listadoempresas= new RepositorioEmpresa();
+        
+        System.out.println("Para registrar producto, primero ingrese razón social de la empresa");
+        Scanner scanner = new Scanner(System.in);
+        String razonsocial = scanner.nextLine();
+        Empresa empresa = listadoempresas.ObtenerEmpresa(razonsocial);
+        
+        if(empresa==null){
+            System.out.println("La empresa no existe");
+        }
+        else{
+            System.out.println("Ingrese el nombre del producto");
+            String productoNombre = scanner.nextLine();
+            System.out.println("Ingrese la descripción del producto");
+            String productoDescripcion = scanner.nextLine();
+            
+            Producto producto1 = new Producto(productoNombre,productoDescripcion);
+            
+            empresa.AgregarProducto(producto1);
+            System.out.println("El producto se registró correctamente");
+        }
+        
+        
+    }
+    
 }

@@ -5,6 +5,8 @@
  */
 package com.mycompany.directorioempresas;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author juan
@@ -13,6 +15,7 @@ public class Empresa {
     private String razonSocial;
     private String email;
     private String telefono;
+    private ArrayList<Producto> listaDeProductos = new ArrayList();
 
     public Empresa(String razonSocial, String email) {
         this.razonSocial = razonSocial;
@@ -21,5 +24,9 @@ public class Empresa {
 
     public String getRazonSocial() {
         return razonSocial;
+    }
+    
+    public void AgregarProducto(Producto producto){
+        this.listaDeProductos.add(producto);
     }
 }
