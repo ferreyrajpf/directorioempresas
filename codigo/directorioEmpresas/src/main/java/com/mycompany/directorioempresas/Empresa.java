@@ -17,6 +17,10 @@ public class Empresa {
     private String telefono;
     private ArrayList<Producto> listaDeProductos = new ArrayList();
 
+    public ArrayList<Producto> getListaDeProductos() {
+        return listaDeProductos;
+    }
+
     public Empresa(String razonSocial, String email) {
         this.razonSocial = razonSocial;
         this.email = email;

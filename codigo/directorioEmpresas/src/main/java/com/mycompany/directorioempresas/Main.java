@@ -20,6 +20,7 @@ public class Main {
         System.out.println("Ingrese una opción");
         System.out.println("1 -  Registrar empresa");
         System.out.println("2 -  Registrar producto");
+        System.out.println("3 -  Consultar producto de empresa");
         
         Scanner scanner = new Scanner(System.in);
         int opcion = scanner.nextInt();
@@ -33,6 +34,10 @@ public class Main {
                 RegistrarProducto();
             break;
                   
+            case 3:
+                RegistrarEmpresa();
+                RegistrarProducto();
+                ConsultarProductosEmpresa();
             
         }
     }
@@ -72,18 +77,49 @@ public class Main {
             System.out.println("La empresa no existe");
         }
         else{
-            System.out.println("Ingrese el nombre del producto");
-            String productoNombre = scanner.nextLine();
-            System.out.println("Ingrese la descripción del producto");
-            String productoDescripcion = scanner.nextLine();
-            
-            Producto producto1 = new Producto(productoNombre,productoDescripcion);
-            
-            empresa.AgregarProducto(producto1);
-            System.out.println("El producto se registró correctamente");
+            boolean seguirAgregando=true;
+            while (seguirAgregando){
+                AgregarProducto(empresa);
+                System.out.println("Seguir agregando?: S / N");
+                String respuesta = scanner.nextLine();
+                if (respuesta.compareToIgnoreCase("S")==0){
+                    seguirAgregando=true;
+                }
+                else{
+                    seguirAgregando=false;
+                }
+            }
         }
-        
-        
+    }
+       
+    public static void AgregarProducto(Empresa empresa){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el nombre del producto");
+        String productoNombre = scanner.nextLine();
+        System.out.println("Ingrese la descripción del producto");
+        String productoDescripcion = scanner.nextLine();
+
+        Producto producto1 = new Producto(productoNombre,productoDescripcion);
+
+        empresa.AgregarProducto(producto1);
+        System.out.println("El producto se registró correctamente");
     }
     
+    
+    public static void ConsultarProductosEmpresa(){
+        RepositorioEmpresa listadoempresas= new RepositorioEmpresa();
+        System.out.println("Para consultar los producto, primero ingrese razón social de la empresa");
+        Scanner scanner = new Scanner(System.in);
+        String razonsocial = scanner.nextLine();
+        Empresa empresa = listadoempresas.ObtenerEmpresa(razonsocial);
+        
+        if(empresa==null){
+            System.out.println("La empresa no existe");
+        }
+        else{
+            for (Producto productosEmpresa : empresa.getListaDeProductos()){
+                System.out.println(productosEmpresa.getNombre());
+            }
+        }
+    }
 }

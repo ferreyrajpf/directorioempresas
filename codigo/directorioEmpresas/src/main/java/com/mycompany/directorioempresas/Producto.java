@@ -17,6 +17,10 @@ public class Producto {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
     private String nombre;
     private String descripcion;
     private BigDecimal precio = new BigDecimal(0.0);
