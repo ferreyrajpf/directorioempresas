@@ -21,6 +21,7 @@ public class Main {
         System.out.println("1 -  Registrar empresa");
         System.out.println("2 -  Registrar producto");
         System.out.println("3 -  Consultar producto de empresa");
+        System.out.println("4 -  Dar de baja una empresa");
         
         Scanner scanner = new Scanner(System.in);
         int opcion = scanner.nextInt();
@@ -37,8 +38,12 @@ public class Main {
             case 3:
                 RegistrarEmpresa();
                 RegistrarProducto();
+                RegistrarBajaEmpresa();
                 ConsultarProductosEmpresa();
-            
+            case 4:
+                RegistrarEmpresa();
+                RegistrarBajaEmpresa();
+            break;
         }
     }
     
@@ -122,4 +127,22 @@ public class Main {
             }
         }
     }
+    
+    public static void RegistrarBajaEmpresa(){
+        RepositorioEmpresa listadoempresas= new RepositorioEmpresa();
+        System.out.println("Para dar de baja una empresa ingrese razón social");
+        Scanner scanner = new Scanner(System.in);
+        String razonsocial = scanner.nextLine();
+        Empresa empresa = listadoempresas.ObtenerEmpresa(razonsocial);
+        
+        if (empresa==null){
+            System.out.println("La empresa no existe");
+        }
+        else{
+            empresa.setHabilitada(false);
+            System.out.println("Estado de la empresa"+ empresa.isHabilitada());
+            }
+        
+    }
+            
 }

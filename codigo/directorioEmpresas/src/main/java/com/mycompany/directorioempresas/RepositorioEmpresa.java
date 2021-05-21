@@ -25,10 +25,12 @@ public class RepositorioEmpresa {
     public Empresa ObtenerEmpresa(String razonsocial){
         for (Empresa empresa : listadoEmpresas){
             if (empresa.getRazonSocial().equalsIgnoreCase(razonsocial)){
-                return empresa;
+                if (empresa.isHabilitada()){
+                    return empresa;
+                }
             }
-        }
+            }
         return null;
     }
-          
+      
 }

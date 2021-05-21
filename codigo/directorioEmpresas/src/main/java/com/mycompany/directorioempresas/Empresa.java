@@ -16,6 +16,15 @@ public class Empresa {
     private String email;
     private String telefono;
     private ArrayList<Producto> listaDeProductos = new ArrayList();
+    private boolean habilitada;
+
+    public boolean isHabilitada() {
+        return habilitada;
+    }
+
+    public void setHabilitada(boolean habilitada) {
+        this.habilitada = habilitada;
+    }
 
     public ArrayList<Producto> getListaDeProductos() {
         return listaDeProductos;
