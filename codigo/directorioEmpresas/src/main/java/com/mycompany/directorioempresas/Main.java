@@ -22,6 +22,7 @@ public class Main {
         System.out.println("2 -  Registrar producto");
         System.out.println("3 -  Consultar producto de empresa");
         System.out.println("4 -  Dar de baja una empresa");
+        System.out.println("5 -  Consultar productos de rubro");
         
         Scanner scanner = new Scanner(System.in);
         int opcion = scanner.nextInt();
@@ -43,6 +44,13 @@ public class Main {
             case 4:
                 RegistrarEmpresa();
                 RegistrarBajaEmpresa();
+            break;
+            
+            case 5:    
+                RegistrarEmpresa();
+                CargarRubros();
+                RegistrarProducto();
+                ConsultarProductoRubro();
             break;
         }
     }
@@ -108,6 +116,13 @@ public class Main {
 
         empresa.AgregarProducto(producto1);
         System.out.println("El producto se registró correctamente");
+        
+        RepositorioRubro rubros = new RepositorioRubro();
+        
+        System.out.println("Indique el rubro al que desea incorporar el producto");
+        String nombrerubroingresado = scanner.nextLine();
+        Rubro rubroIngresado= rubros.ObtenerRubro(nombrerubroingresado);
+        rubroIngresado.AgregarProducto(producto1);
     }
     
     
@@ -144,5 +159,42 @@ public class Main {
             }
         
     }
-            
+    
+    public static void ConsultarProductoRubro(){
+        RepositorioRubro rubros = new RepositorioRubro();
+        
+        for (Rubro item : rubros.ObtenerRubros()){
+            System.out.println(item.getNombre());
+        }
+        System.out.println("Elegir rubro:");
+        
+        Scanner scanner = new Scanner(System.in);
+        String eleccion = scanner.nextLine();
+        
+        Rubro rubroelegido = rubros.ObtenerRubro(eleccion);
+        if (rubroelegido==null){
+            System.out.println("El rubro no existe");
+        }
+        else{
+            System.out.println("Los productos del rubro ingresado son:");
+            for (Producto item : rubroelegido.ObtenerProductos()){
+                System.out.println(item.getNombre());
+            }
+                
+        }
+        
+    }
+    public static void CargarRubros(){
+        RepositorioRubro rubros = new RepositorioRubro();
+        
+        Rubro rubro1 = new Rubro("Muebles");
+        Rubro rubro2 = new Rubro("Maquinarias");
+        Rubro rubro3 = new Rubro("Ferreteria");
+        
+        rubros.AgregarRubro(rubro1);
+        rubros.AgregarRubro(rubro2);
+        rubros.AgregarRubro(rubro3);
+        
+        
+    }
 }
