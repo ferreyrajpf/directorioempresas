@@ -17,6 +17,8 @@ public class Empresa {
     private String telefono;
     private ArrayList<Producto> listaDeProductos = new ArrayList();
     private boolean habilitada;
+    private String pais;
+    private String husoHorario;
 
     public boolean isHabilitada() {
         return habilitada;
@@ -30,9 +32,11 @@ public class Empresa {
         return listaDeProductos;
     }
 
-    public Empresa(String razonSocial, String email) {
+    public Empresa(String razonSocial, String email,String pais, String husoHorario) {
         this.razonSocial = razonSocial;
         this.email = email;
+        this.pais=pais;
+        this.husoHorario=husoHorario;
     }
 
     public String getRazonSocial() {
@@ -41,5 +45,9 @@ public class Empresa {
     
     public void AgregarProducto(Producto producto){
         this.listaDeProductos.add(producto);
+    }
+    
+    public String getHusoHorario(){
+        return husoHorario;
     }
 }
